@@ -23,8 +23,8 @@
 			select color: <input type="color" id="hex" placeholder="hex">
 
 			<button type="button" id="boton" onclick="createLines()">click here</button>
-
-			<button type="button" id="startStop" onclick="startStop()"> start | stop </button>	
+			<input id="fpsRange" type="range" value="60" min="1" max="1000" onchange="setFps()"> <span id="showfps"></span>
+			
 			
 	</body>
 </html>
