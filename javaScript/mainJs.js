@@ -35,7 +35,6 @@ function heightUser( quest ){
 
 //moveColors function execute process that this process change the color of div in lines for the next line:
 //moveColors is a avoid
-var row = 0 ;
 
 function moveColors(){
 	const new_order = []
