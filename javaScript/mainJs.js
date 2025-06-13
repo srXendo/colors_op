@@ -36,27 +36,23 @@ function heightUser( quest ){
 //moveColors function execute process that this process change the color of div in lines for the next line:
 //moveColors is a avoid
 var row = 0 ;
-function moveColors(mainLines){
 
-	mainLines =  [...mainLines].map((line, idx) => appliColorInLine(line, originalStarted[
-		idx + row < quest ? getOldIdx(idx + row) : getOldIdx( ((idx + row) - quest) )
-	]))
-	if(row >= quest){
-		row = 0;
-	}else{
-		row = row + 1
+function moveColors(){
+	const new_order = []
+	let mainLines = document.getElementsByClassName('allLines')
+	for(let idx = 0; idx < mainLines.length; idx++){
+
+		if(idx === 0){
+			new_order.push(mainLines[mainLines.length - 1].style.background)
+		}
+		if(idx > 0 && idx < mainLines.length){
+			new_order.push(mainLines[idx-1].style.background)
+		}
+	}
+	for(let idx = 0; idx < mainLines.length; idx++){
+		mainLines[idx].style.background = new_order[idx]
 	}
 	
-}
-
-
-function appliColorInLine(line, oldColor){
-	line.style.background = oldColor
-	return line 
-}
-//return: number - get: get the last before div index of now div index
-function getOldIdx(i){
-	return i === 0 ? quest - 1 : i - 1
 }
 
 //aviod: printLines
@@ -115,6 +111,6 @@ function createLine(i){
 function setFps(){
 	clearInterval(interv)
 	dSpeed = document.getElementById('fpsRange').value
-	interv = setInterval( moveColors.bind(this, document.getElementsByClassName('allLines')) , 1000 / dSpeed);
+	interv = setInterval( moveColors.bind(this) , 1000 / dSpeed);
 	document.getElementById('showfps').innerHTML = dSpeed + ' fps';
 }
